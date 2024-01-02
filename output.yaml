@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: appsv1
 kind: StatefulSet
 metadata:
   name: postgres
@@ -18,12 +18,12 @@ spec:
         image: postgres
         imagePullPolicy: IfNotPresent
         env:
-        - name: POSTGRES_USER
+        - name: POSTGRESUSER
           valueFrom:
             secretKeyRef:
-              name: ${postgres-secret}
+              name: postgres-secret
               key: username
-        - name: POSTGRES_PASSWORD
+        - name: POSTGRESPASSWORD
           valueFrom:
             secretKeyRef:
               name: postgres-secret

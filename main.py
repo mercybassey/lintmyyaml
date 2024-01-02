@@ -1,6 +1,8 @@
 import os
 import yaml
 
+from corrector import clean_yaml
+
 def read_file(input_filename):
     valid_extensions = ['.yaml', '.yml']
 
@@ -11,8 +13,14 @@ def read_file(input_filename):
                 with open(x, 'r') as f:
                     data = yaml.safe_load(f)
                     return data
-            except FileNotFoundError:
-                continue
+            except yaml.YAMLError:
+                try:
+                    with open(x, 'r') as f:
+                        data = f.read()
+                        corrected_yaml = yaml.safe_load(clean_yaml(data))
+                        return corrected_yaml
+                except FileNotFoundError:
+                    continue
         else: print(f"File does not exist: {x}")
     print(f"Error: No valid YAML or YAML file found for '{input_filename}'.")
     return None

@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: $$$$apps/v1
 kind: StatefulSet
 metadata:
   name: postgres
@@ -8,7 +8,7 @@ spec:
     matchLabels:
       app: postgres
   replicas: 1
-  template:
+  **template:
     metadata:
       labels:
         app: postgres
@@ -16,8 +16,8 @@ spec:
       containers:
       - name: postgres
         image: postgres
-        imagePullPolicy: IfNotPresent
-        env:
+        %%imagePullPolicy: IfNotPresent
+        @env:
         - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
