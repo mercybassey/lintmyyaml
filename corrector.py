@@ -13,10 +13,14 @@ def remove_special_characters(yaml_str):
         return yaml_str
     else:
         return yaml_str
+    
+def convert_tabs_to_spaces(yaml_str, spaces_per_tab=2):
+    return yaml_str.expandtabs(spaces_per_tab)
 
 def clean_yaml(yaml_content):
     cleaned_yaml_content = remove_special_characters(yaml_content)
     parsed_yaml = yaml.safe_load(cleaned_yaml_content)
+    cleaned_yaml_content = convert_tabs_to_spaces(cleaned_yaml_content)
 
     def clean_dict(input_dict):
         cleaned_dict = {}
