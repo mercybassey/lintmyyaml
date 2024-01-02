@@ -1,9 +1,21 @@
+import os
 import yaml
 
 def read_file(input_filename):
-    with open(f'{input_filename}.yaml', 'r') as f:
-        data = yaml.safe_load(f)
-        return data
+    valid_extensions = ['.yaml', '.yml']
+
+    for ext in valid_extensions:
+        x = f'{input_filename}{ext}'
+        if os.path.exists(x):
+            try:
+                with open(x, 'r') as f:
+                    data = yaml.safe_load(f)
+                    return data
+            except FileNotFoundError:
+                continue
+        else: print(f"File does not exist: {x}")
+    print(f"Error: No valid YAML or YAML file found for '{input_filename}'.")
+    return None
     
 def write_file(output_filename, data):
     with open(f'{output_filename}.yaml', 'w') as file:
