@@ -9,7 +9,6 @@ def clean_yaml(yaml_content):
     parsed_yaml = yaml.safe_load(cleaned_yaml_content)
     cleaned_yaml_content = convert_tabs_to_spaces(cleaned_yaml_content)
 
-    
 
     def clean_dict(input_dict):
         cleaned_dict = {}
@@ -24,5 +23,3 @@ def clean_yaml(yaml_content):
     cleaned_parsed_yaml = clean_dict(parsed_yaml)
 
     return yaml.dump(cleaned_parsed_yaml, default_flow_style=False, sort_keys=False) 
-
-
